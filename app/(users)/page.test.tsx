@@ -1,6 +1,6 @@
 import UsersPage from '@/app/(users)/page';
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { render, screen } from '@testing-library/react';
+import { beforeEach, describe, expect, it, vi, Mock } from 'vitest';
 import '@testing-library/jest-dom/vitest';
 import { useGetUsers, useGetUsersCount } from '@/app/(users)/_lib/userQueries';
 
@@ -40,8 +40,8 @@ const MOCK_USERS = [
 const mockPush = vi.fn();
 const mockSetUser = vi.fn();
 
-const mockUseGetUsersCount = useGetUsersCount as unknown as vi.Mock;
-const mockUseGetUsers = useGetUsers as unknown as vi.Mock;
+const mockUseGetUsersCount = useGetUsersCount as Mock;
+const mockUseGetUsers = useGetUsers as Mock;
 
 vi.mock('next/navigation', () => ({
   useRouter: vi.fn(() => ({
