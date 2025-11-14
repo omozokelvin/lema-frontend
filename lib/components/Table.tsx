@@ -31,7 +31,7 @@ export default function Table<TData>({
   error,
 }: TableProps<TData>) {
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white rounded-xl font-inter">
+    <div className="max-w-4xl mx-auto md:p-6 p-2 bg-white rounded-xl font-inter">
       {!!title && (
         <h1 className="font-medium text-6xl tracking-normal text-foreground mb-8">
           {title}
