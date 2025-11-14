@@ -79,15 +79,21 @@ export default function Table<TData>({
                 </td>
               </tr>
             ) : isError ? (
-              <div className="text-center p-12 text-red-600 bg-red-50 rounded-xl shadow-inner max-w-4xl mx-auto">
-                <Frown className="w-8 h-8 mx-auto mb-3" />
-                <h2 className="text-xl font-semibold">Error Loading Users</h2>
-                <p className="text-sm">
-                  {error instanceof Error
-                    ? error.message
-                    : 'An unknown error occurred.'}
-                </p>
-              </div>
+              <tr>
+                <td colSpan={columns.length} className="p-4">
+                  <div className="text-center p-12 text-red-600 bg-red-50 rounded-xl shadow-inner max-w-4xl mx-auto">
+                    <Frown className="w-8 h-8 mx-auto mb-3" />
+                    <h2 className="text-xl font-semibold">
+                      Error Loading Users
+                    </h2>
+                    <p className="text-sm">
+                      {error instanceof Error
+                        ? error.message
+                        : 'An unknown error occurred.'}
+                    </p>
+                  </div>
+                </td>
+              </tr>
             ) : (
               data.map((row, rowIndex) => (
                 <tr
