@@ -98,7 +98,7 @@ export default function DeleteModal({
               type="submit"
               disabled={isSubmitting}
               loading={isSubmitting}
-              className="text-error-400"
+              className="bg-red-400 hover:bg-red-400"
             >
               Delete
             </Button>
