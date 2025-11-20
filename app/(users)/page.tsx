@@ -4,8 +4,7 @@ import Table from '@/lib/components/Table';
 import { routes } from '@/lib/constants/routes';
 import { useGetUsers, useGetUsersCount } from '@/app/(users)/_lib/userQueries';
 import { ExtendedColumnDef } from '@/lib/types';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { User } from '@/app/(users)/_lib/userTypes';
 
 const FULL_NAME_COLUMN_WIDTH = `w-[179px]`;
@@ -38,7 +37,11 @@ const userColumns: ExtendedColumnDef<User>[] = [
 ];
 
 export default function UsersPage() {
-  const [pageNumber, setPageNumber] = useState(1);
+  // const [pageNumber, setPageNumber] = useState(1);
+
+  const searchParams = useSearchParams();
+
+  const pageNumber = Number(searchParams.get('pageNumber')) || 1;
   const router = useRouter();
 
   const navigateToPosts = (user: User) => {
@@ -69,7 +72,9 @@ export default function UsersPage() {
       onRowClick={navigateToPosts}
       totalPages={totalPages}
       pageNumber={pageNumber}
-      setPageNumber={setPageNumber}
+      setPageNumber={(page: number) => {
+        router.push(routes.home(page));
+      }}
       isError={isError}
       error={error}
     />
